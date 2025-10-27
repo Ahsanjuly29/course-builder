@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('module_id')->constrained()->cascadeOnDelete();
+            $table->string('title')->nullable();
+            $table->text('body')->nullable();
+            $table->string('content_type')->default('text'); // text,image,video,link,file
+            $table->string('media_path')->nullable();
+            $table->string('link')->nullable();
+            $table->unsignedInteger('position')->default(0);
             $table->timestamps();
         });
     }
